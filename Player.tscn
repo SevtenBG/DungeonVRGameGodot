@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://614tcj77iu7m"]
+
+[ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="1_kpjcp"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="2_e80uo"]
+[ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="2_kne1u"]
+[ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="3_5ncpa"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_wi0c6"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="6_hp6x6"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="7_3tkgg"]
+
+[node name="XROrigin3D" type="XROrigin3D"]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="."]
+
+[node name="LeftHandController" type="XRController3D" parent="."]
+tracker = &"left_hand"
+
+[node name="LeftHand2" parent="LeftHandController" instance=ExtResource("1_kpjcp")]
+
+[node name="FunctionPickup" parent="LeftHandController/LeftHand2" instance=ExtResource("2_e80uo")]
+
+[node name="FunctionTeleport" parent="LeftHandController/LeftHand2" instance=ExtResource("3_5ncpa")]
+
+[node name="MovementDirect" parent="LeftHandController/LeftHand2" instance=ExtResource("4_wi0c6")]
+strafe = true
+
+[node name="RightHandController" type="XRController3D" parent="."]
+tracker = &"right_hand"
+
+[node name="RightHand" parent="RightHandController" instance=ExtResource("2_kne1u")]
+
+[node name="FunctionPickup" parent="RightHandController/RightHand" instance=ExtResource("2_e80uo")]
+
+[node name="MovementTurn" parent="RightHandController/RightHand" instance=ExtResource("6_hp6x6")]
+
+[node name="PlayerBody" parent="." instance=ExtResource("7_3tkgg")]
